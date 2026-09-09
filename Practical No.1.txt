@@ -1,0 +1,199 @@
+Practical No.1
+
+SET-A
+
+i)create database of company_db name
+create database company_db;
+
+ii)use database
+use company_db;
+
+iii)create table emoployees
+mysql> create table employees (employee_id int primary key,employee_name varchar(100),department varchar(100),salary decimal(10,2),city varchar(100),joining_date date,status varchar(20));
+
+iv)show the structure oftable
+describe employees;
+
+v)show the all tables in company_db database
+show tables;
+
+
+SET-B
+
+Insert the employee record
+
+i)insert into employees values(101,'rahul patil','development',45000,'pune','2026-01-10','active');
+
+ii)insert into employees values(102,'priya sharma','testing',38000,'mumbai','2026-02-15','active');
+
+iii)insert into employees values(103,'amit joshi','development',52000,'pune','2025-12-05','active');
+
+
+iv)insert into employees values(104,'sneha kulkarni','hr',35000,'nashik','2026-03-20','active');
+
+v) insert into employees values(105,'rohan deshmukh','support',30000,'mumbai','2026-04-01','inactive');
+
+vi)insert into employees values(106,'anjali more','testing',42000,'pune','2026-05-12','active');
+
+
+SET-C
+
+
+1)display all records
+select * from employees;
+
+2)display only employee name
+ select employee_name from employees;
+
+3)display employee name and salary 
+ select employee_name,salary from employees;
+
+4)display employee name , department , city
+select employee_name,department,city from employees;
+
+5)display employee from pune
+ select * from employees where city='pune';
+
+6)display employee from Mumbai
+select * from employees where city='mumbai';
+
+7)display development department employees
+ select * from employees where department='development';
+
+8)display testing department employee
+select * from employees where department='testing';
+
+9)display active employees
+ select * from employees where status='active';
+
+10)display inactive employees
+select * from employees where status='inactive';
+
+11)display employee whose employee_id=103
+select * from employees where employee_id=103;
+
+12)display employee whose name is Priya sharma
+select * from employees where employee_name='priya sharma';
+
+13)display employee whose salary greater than 40000
+select * from employees where salary>40000;
+
+14)display employee whose salary less than 40000
+select * from employees where salary<40000;
+
+15)display employee whose salary is 35000
+select * from employees where salary=35000;
+
+16)display employee whose salary is greater than or equal to 35000
+select * from employees where salary>=42000;
+
+17)display pune employee with active status
+select * from employees where city ='pune' and status='active';
+
+18)display development employee whose salary greater than 45000
+ select * from employees where department='development' and salary>45000;
+
+19)display employee from pune or Mumbai
+select * from employees where city='pune' or city='mumbai';
+
+
+SET-D
+
+1)update Rahul patil salary from 45000 to 48000
+ update employees set salary =48000 where employee_name='rahul patil';
+
+2)update rohan Deshmukh status inactive to active
+update employees set status='active' where employee_name='rohan deshmukh';
+
+3)update city of Sneha from nashik to pune
+update employees set city='pune' where employee_name='sneha kulkarni';
+
+4)update department of Priya sharma from testing to development
+ update employees set department='development' where employee_name='priya sharma';
+
+5)update salary of employee 106 to 45000
+ update employees set salary=45000 where employee_id=106;
+
+6)increase salary of employee 103 by 3000
+update employees set salary=salary +3000 where employee_id=103;
+
+7)increase the salary of all testing department employee by 2000
+update employees set salary=salary+2000 where department='testing';
+
+8)change the city of Mumbai employee to Mumbai branch
+ update employees set city='mumbai branch' where city='mumbai';
+
+
+SET-E
+
+1)delete employee whose employee_id=105
+ delete from employees where employee_id=105;
+
+2)delete the employee whose name is rohan Deshmukh
+delete from employees where employee_name='rohan deshmukh';
+
+3)delete all employee whose status is inactive
+delete from employees where status='inactive';
+
+4)delete employee whose salary less than 30000
+ delete from employees where salary<30000;
+
+5)delete the employee with employee id=104
+delete from employees where employee_id=104;
+
+
+SET-F
+
+1)add new column of email 
+alter table employees add column email varchar(100);
+
+2)add new column mobile
+alter table employees add column mobile varchar(15);
+
+3)change the size of city to varchar(100)
+alter table employees modify column city varchar(100);
+
+4)delete the mobile column
+alter table employees drop column mobile;
+
+5)Rename column employee_name to name.
+alter table employees rename column employee_name TO name;
+
+6)add column experience 
+ alter table employees add column experience int;
+
+7)update experience for one employee
+ update employees set experience =5 where employee_id=101;
+
+
+SET-G
+
+1)create another table deaprtments
+create table departments(department_id int primary key,department_name varchar(100),location varchar(100));
+
+2)insert 3 department records
+ insert into departments values(1,'botony','pune'),(2,'chemistry','solapur'),(3,'statistics','ratnagiri');
+
+3)display all department records
+select * from departments;
+
+4)update one department location
+update departments set location='raigad' where location='pune';
+
+5)delete one department record 
+delete from departments where location='solapur';
+
+6)rename table from departments to company departments
+ rename table departments to company_department;
+
+7)display the structure of company departments table 
+ describe company_department;
+
+8)remove all records without removing table
+delete from company_department;
+
+9)delete company department table 
+ drop table company_department;
+
+10)display remaining tables in database 
+show tables;
