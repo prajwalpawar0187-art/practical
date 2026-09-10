@@ -1,0 +1,193 @@
+Practical No-2
+
+SET-A
+
+1)create database ecommerce_db
+mysql> create database ecommerce_db;
+
+2)use that database
+mysql> use ecommerce_db;
+
+3)create table products
+mysql> create table products(product_id int primary key,product_name varchar(100),category varchar(50),brand varchar(50),price decimal(10,2),quantity int,city varchar(50),status varchar(20));
+
+4)display structure of table
+mysql> describe products;
+
+5)display all tables in this database 
+mysql> show tables;
+
+
+SET-B
+
+insert the values 
+
+1)mysql> insert into products values(201,'galaxy m55','mobile','samsung',32000,15,'pune','available');
+
+2)mysql> insert into products values(202,'i phone','mobile','apple',65000,8,'mumbai','available');
+
+3)mysql> insert into products values(203,'moto edge 50','mobile','motorola',28000,20,'mumbai','available');
+
+4)mysql> insert into products values(204,'inspiron 15','laptop','dell',58000,6,'nashik','available');
+
+5)mysql> insert into products values(205,'ideapad slim 3','laptop','lenovo',45000,12,'mumbai','available');
+
+6)mysql> insert into products values(206,'galaxy watch 6','watch','samsung',22000,4,'pune','out of stock');
+
+7)mysql> insert into products values(207,'apple watch se','watch','apple',30000,10,'mumbai','available');
+
+8)mysql> insert into products values(208,'redmi pad','tablet','xiaomi',24000,18,'pune','available');
+
+9)mysql> insert into products values(209,'oneplus pad','tablet','oneplus',35000,5,'nashik','available');
+
+10)mysql> insert into products values(210,'blutooth speaker','accesories','jbl',7000,25,'mumabi','available');
+
+
+SET-C
+
+1)display all records
+mysql> select * from products;
+
+2)display only product name
+mysql> select product_name from products;
+
+3)display product name and price
+mysql> select product_name,price from products;
+
+4)display product name,category brand and price
+mysql> select product_name,category,brand,price from products;
+
+5)display products available in pune
+mysql> select * from products where city ='pune';
+
+6)display products available in Mumbai
+mysql> select * from products where city ='mumbai';
+
+7)display all mobile products
+mysql> select * from products where category='mobile';
+
+8)display all laptop products
+mysql> select * from products where category='laptop';
+
+9)display product whose price is greater than 30000
+mysql> select * from products where price>30000;
+
+10)display product whose price is less than 30000
+mysql> select * from products where price<30000;
+
+11)display products whose price is equal to 35000
+mysql> select * from products where price=35000;
+
+12)display the products whose price is grater than equal to 45000
+mysql> select * from products where price>=45000;
+
+13)display the products whose price is less than equal to 30000
+mysql> select * from products where price<=30000;
+
+14)display products whose quantity greater than 10
+mysql> select * from products where quantity>10;
+
+15)display products whose quantity less than 10
+mysql> select * from products where quantity<10;
+
+
+SET-D
+
+1)display products from pune and mobile category
+mysql> select * from products where city='pune' and category='mobile';
+
+2)display products from Mumbai and available status
+mysql> select * from products where city='mumbai' and status='available';
+
+3)display products when price grater than 30000 and quantity grater than 5
+mysql> select * from products where quantity>5 and price>30000;
+
+4)display products where price >=30000 and price<=60000
+mysql> select * from products where quantity<=60000 and price>=30000;
+
+5)display products from pune or Mumbai
+mysql> select * from products where city='pune' or city='mumbai';
+
+6)display products belongs to mobile or laptop
+mysql> select * from products where category='mobile' or category='laptop';
+
+7)display products where quantity<10 or price >50000
+mysql> select * from products where quantity<10 or price>50000;
+
+8)display products where category=mobile and price>30000
+mysql> select * from products where category='mobile' or price>30000;
+
+9)display products where brand=Samsung or brand=apple
+mysql> select * from products where brand='samsung' or brand='apple';
+
+10)display products where city=pune and status=available and quantity>10
+mysql> select * from products where city='pune' and status='available' and quantity>10;
+
+
+SET-E
+
+1)display products whose price is between 25000 and 50000
+mysql> select * from products where price>=25000 and price<=50000;
+
+2)display the products whose quantity between 5 and 15
+mysql> select * from products where quantity>=5 and quantity<=15;
+
+3)display products whose category is mobile,laptop,tablet
+mysql> select * from products where category='mobile' or category='laptop' or category='tablet';
+
+4)display products whose city is pune , Mumbai
+mysql> select * from products where city='pune' or city='mumbai';
+
+5)display products whose brand is not Samsung
+mysql> select * from products where brand!='samsung';
+
+6)display products whose status is not out of stock
+mysql> select * from products where status!='out of stock';
+
+7)display products whose price is not equal to 30000
+mysql> select * from products where price != 30000;
+
+8)display products whose product name starts with galaxy
+mysql> select * from products where product_name like 'galaxy%';
+
+9)display products whose name contains pad 
+mysql> select * from products where product_name like '%pad%';
+
+10)display products where category=mobile and price is 30000 or quantity>15
+mysql> select * from products where category='mobile' and (price>30000 or quantity>15);
+
+
+SET-F
+
+1)update the price of galaxy m55 from 32000 to 34000
+mysql> update products set price=34000 where product_name='galaxy m55';
+
+2)update the quantity of iPhone 15 to 12
+mysql> update products set quantity=15 where product_name='i phone';
+
+3)change the status of galaxy watch 6 from out of stock to available
+mysql> update products set status='available' where product_name='galaxy watch 6';
+
+4)increase the price of all mobile products by 2000
+mysql> update products set price=price+2000 where category='mobile';
+
+5)increase the quantity of all pune products by 5
+mysql> update products set quantity=quantity+5 where city='pune';
+
+6)update the status to out of stock for products whose quantity less than 5
+mysql> update products set status='out of stock' where quantity<5;
+
+
+SET-G
+
+1)delete the product whose product_id is 210
+mysql> delete from products where product_id=210;
+
+2)delete the products whose price is less than 8000
+mysql> delete from products where price<8000;
+
+3)delete the product whose status is out of stock and quantity<5
+mysql> delete from products where status='out of stock' and quantity<5;
+
+4)delete the products belongs to tablet category whose price greater than 30000
+mysql> delete from products where category='tablet' and price>30000;
