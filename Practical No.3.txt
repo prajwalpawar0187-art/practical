@@ -1,0 +1,203 @@
+Practical No.3
+
+
+SET-A
+
+1)create database banking_db
+mysql> create database banking_db;
+
+2)use database
+mysql> use banking_db;
+
+3)create table accounts
+mysql> create table accounts(account_id int primary key,account_number varchar(20),customer_name varchar(100),account_type varchar(30),branch varchar(50),city varchar(50),balance decimal(12,2),credit_score int,status varchar(20),opened_date date);
+
+4)display structure
+mysql> describe accounts;
+
+5)display all tables in database
+mysql> show tables;
+
+
+SET-B
+
+insert values in account table
+
+1)mysql> insert into accounts values(101,'acc100001','arav sharma','savings','fc road','pune',85000,780,'active','2025-01-15');
+
+2)mysql> insert into accounts values(102,'acc100002','priya patil','current','andheri','mumabi',145000,810,'active','2024-11-20');
+
+3)mysql> insert into accounts values(103,'acc100003','rohan joshi','savings','baner','pune',42000,735,'active','2026-02-10');
+
+4)mysql> insert into accounts values(104,'acc100004','sneha kulkarni','salary','nashik road','nashik',67000,760,'active','2025-08-05');
+
+5)mysql> insert into accounts values(105,'acc100005','vikram deshmukh','savings','camp','pune',18500,690,'dormant','2023-06-18');
+
+6)mysql> insert into accounts values(106,'acc100006','neha more','current','thane','mumbai',225000,825,'active','2024-03-12');
+
+
+SET-C
+
+1)display all records
+mysql> select * from accounts;
+
+2)display customer name and account number
+mysql> select customer_name,account_number from accounts;
+
+3)display customer name,account type,balance and status
+mysql> select customer_name,account_type,balance,status from accounts;
+
+4)display saving account holders
+mysql> select * from accounts where account_type='savings';
+
+5)display customers from pune
+mysql> select * from accounts where city='pune';
+
+6)display account having balance greater than 50000
+mysql> select * from accounts where balance>50000;
+
+7)display accounts having balance less than or equal to 50000
+mysql> select * from accounts where balance<=50000;
+
+8)display account having balance between 50000 and 200000
+mysql> select * from accounts where balance>=50000 and balance<=200000;
+
+9)display account whose credit score is greater than or equal to 750
+mysql> select * from accounts where credit_score>=750;
+
+10)display active accounts
+mysql> select * from accounts where status='active';
+
+11)display accounts whose account is dormant or closed
+mysql> select * from accounts where status='dormant';
+
+13)display account from pune and status is active
+mysql> select * from accounts where city='pune' and status='active';
+
+14)display account from Mumbai or nashik
+mysql> select * from accounts where city='mumbai' or city='nashik';
+
+15)display accounts whose account type is saving or salary
+mysql> select * from accounts where account_type='savings' or account_type='salary';
+
+16)display accounts whose balance is not between 25000 and 100000
+mysql> select * from accounts where balance>100000 or balance<25000;
+
+17)display accounts whose customer name starts whith a
+mysql> select * from accounts where customer_name like 'a%';
+
+17)display accounts whose customer name ends whith a
+mysql> select * from accounts where customer_name like '%a';
+
+18)display the accounts whose branch contains word road
+mysql> select * from accounts where branch like '%road%';
+
+19)display top 3 accounts having highest balance 
+mysql> select * from accounts order by balance desc limit 3;
+
+20)display first 5 account 
+mysql> select * from accounts order by account_id asc limit 5;
+
+21)display 3 accounts starting from 4th record using limit 3,3
+mysql> select * from accounts limit 3,3;
+
+22)display active saving accounts from pune with balance greater than 50000
+mysql> select * from accounts where city='pune' and status='active' and account_type='savings' and balance>50000;
+
+23)display accounts from pune , Mumbai or nashik having credit score >=750
+mysql> select * from accounts where city=('pune' or 'nashik' or 'mumbai') and credit_score>=750;
+
+24)display account where balance>100000 and credit score >=800
+mysql> select * from accounts where balance>100000 and credit_score>=800;
+
+25)display accounts where balance is between 50000 and 150000 or credit score >800
+mysql> select * from accounts where (balance>=50000 and balance<=150000) and credit_score>800;
+
+26)display accounts whose status is active and account type is not current
+mysql> select * from accounts where status='active' and account_type!='current';
+
+27)display account whose customer name contains ar
+mysql> select * from accounts where customer_name like '%ar%';
+
+
+SET-D
+
+1)update Aarav sharmas balance from 85000 to 95000
+mysql> update accounts set balance=95000 where customer_name='arav sharma';
+
+2)update Vikram Deshmukh status from dormant to active
+mysql> update accounts set status='active' where customer_name='vikram deshmukh';
+
+3)update rohan joshi credit score from 735 to 755
+mysql> update accounts set credit_score=755 where customer_name='rohan joshi';
+
+4)update Sneha Kulkarni branch from nashik road to college road
+mysql> update accounts set branch='college road' where customer_name='sneha kulkarni';
+
+5)update Priya patil account type from current to premium current
+mysql> update accounts set account_type='premium current' where customer_name='priya patil';
+
+6)increase tghe balance of account id 106 by 25000
+mysql> update accounts set balance=balance+25000 where account_id=106;
+
+7)increase the balance of all savings account by 5000
+mysql> update accounts set balance=balance+5000 where account_type='savings';
+
+8)update all accounts from pune branch location to pune city
+mysql> update accounts set city='pune city' where city='pune';
+
+9)increase the credit score by 10 for active accounts having credit score below 750
+mysql> update accounts set credit_score=credit_score+10 where status='active' and credit_score<750;
+
+10)change the status to dormant for accounts whose balance below 20000
+mysql> update accounts set status='dormant' where balance<20000;
+
+
+SET-E
+
+1)delete the account whose id is 105
+mysql> delete from accounts where account_id=105;
+
+2)delete the account whose account number is acc10004
+mysql> delete from accounts where account_number='acc10004';
+
+3)delete all accounts having status closed
+mysql> delete from accounts where status='closed';
+
+4)delete the account whose balance is less than 10000 or credit score less than 600
+mysql> delete from accounts where balance<10000 or credit_score<600;
+
+5)delete account from a selected city where status is dormant
+mysql> delete from accounts where city ='pune' and status='dormant';
+
+
+SET-F
+
+1)add new column email
+mysql> alter table accounts add column email varchar(100);
+
+2)add new column mobile
+mysql> alter table accounts add column mobile varchar(15);
+
+3)change the size of branch varchar(100)
+mysql> alter table accounts modify column branch varchar(100);
+
+4)Rename column customer_name to name.
+mysql> alter table accounts rename column customer_name to name;
+
+5)Delete the mobile column.
+mysql> alter table accounts drop column mobile;
+
+
+SET-G
+
+1)
+mysql> alter table accounts add column account_category varchar(30);
+mysql> update accounts set account_category='fd' where account_id=101;
+mysql> update accounts set account_category='loan' where account_id=102;
+mysql> rename table accounts to bank_accounts;
+
+2)
+mysql> describe bank_accounts;
+mysql> truncate table bank_accounts;
+mysql> drop table bank_accounts;
