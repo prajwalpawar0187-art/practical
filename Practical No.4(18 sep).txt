@@ -1,0 +1,231 @@
+Practical-4 SQL
+
+SET-A
+
+table creation
+mysql> create table employees (employee_id int primary key,employee_name varchar(100) not null, department varchar(50),ssalary decimal(10,2),city varchar(50),joining_date date,email varchar(100),status varchar(20));
+
+data insertion
+mysql> insert into employees values(101,'sanjay ram kushwaha','hr',60000,'pune','2024-08-26','srk123@gmail.com','active');
+
+mysql> insert into employees values (102,'yash bajirao patil','it',50000,'nashik','2025-01-10','ybp123@gmail.com','active');
+
+mysql> insert into employees values (103,'ayush nitin kolhe','fianace',78000,'mumbai','2025-09-10','ank@gmail.com','active'),(104,'shreyash vivek atre','testing',30000,'mumbai','2021-05-5','sva@gmail.com','inactive'),(105,'shantanu dilip patil','it',65000,'pune','2023-01-01','sdp@gmail.com','active');
+
+mysql> INSERT INTO employees VALUES (106, 'Prajwal Satish Pawar', 'IT', 45000, 'Pune', '2026-01-10', 'psp123@gmail.com', 'Active'), (107, 'Aditya Mahesh Jadhav', 'Finance', 52000, 'Mumbai', '2026-01-15', 'amj124@gmail.com', 'Active'), (108, 'Sneha Rajendra Shinde', 'Testing', 38000, 'Nashik', '2026-02-05', 'srs125@gmail.com', 'Active'), (109, 'Rohit Sanjay Patil', 'HR', 41000, 'Pune', '2026-02-18', 'rsp126@gmail.com', 'Inactive'), (110, 'Vaishnavi Prakash Deshmukh', 'Support', 33000, 'Mumbai', '2026-03-01', 'vpd127@gmail.com', 'Active'), (111, 'Akshay Dattatray Kulkarni', 'Sales', 47000, 'Nashik', '2026-03-12', 'adk128@gmail.com', 'Active'), (112, 'Rutuja Vinayak More', 'IT', 68000, 'Pune', '2026-03-25', 'rvm129@gmail.com', 'Active'), (113, 'Omkar Nitin Chavan', 'Finance', 59000, 'Mumbai', '2026-04-08', 'onc130@gmail.com', 'Inactive'), (114, 'Kiran Ashok Bhosale', 'Testing', 36000, 'Nashik', '2026-04-20', 'kab131@gmail.com', 'Active'), (115, 'Amruta Suresh Gaikwad', 'HR', 43000, 'Pune', '2026-05-05', 'asg132@gmail.com', 'Active');
+
+mysql> INSERT INTO employees VALUES (116, 'Sanket Vijay Wagh', 'Support', 31000, 'Mumbai', '2026-05-15', 'svw133@gmail.com', 'Inactive'), (117, 'Manasi Pravin Joshi', 'Sales', 55000, 'Nashik', '2026-05-28', 'mpj134@gmail.com', 'Active'), (118, 'Tejas Rajesh Pawar', 'IT', 75000, 'Pune', '2026-06-10', 'trp135@gmail.com', 'Active'), (119, 'Neha Milind Shinde', 'Finance', 62000, 'Mumbai', '2026-06-18', 'nms136@gmail.com', 'Active'), (120, 'Swapnil Anand Patil', 'Testing', 48000, 'Nashik', '2026-06-25', 'sap137@gmail.com', 'Inactive'), (121, 'Pooja Sunil Jagtap', 'HR', 39000, 'Pune', '2026-07-05', 'psj138@gmail.com', 'Active'), (122, 'Vivek Ramesh Deshpande', 'Support', 28000, 'Mumbai', '2026-07-15', 'vrd139@gmail.com', 'Active'), (123, 'Madhuri Ganesh Kshirsagar', 'Sales', 58000, 'Nashik', '2026-07-25', 'mgk140@gmail.com', 'Inactive'), (124, 'Nikhil Shankar Mahajan', 'IT', 95000, 'Pune', '2026-08-05', 'nsm141@gmail.com', 'Active'), (125, 'Shubham Pradeep Kadam', 'Finance', 72000, 'Mumbai', '2026-08-15', 'spk142@gmail.com', 'Active');
+
+
+SET-B
+
+1.show employees from pune
+mysql> select * from employees where city ='pune';
+
+2.show employees from Mumbai
+mysql> select * from employees where city ='mumbai';
+
+3.employees from IT department
+mysql> select * from employees where department ='it';
+
+4.employees from hr department
+mysql> select * from employees where department ='hr';
+
+5.employees from sales department
+mysql> select * from employees where department ='sales';
+
+6.employees with status active
+mysql> select * from employees where status ='active';
+
+7.employees with inactive status
+mysql> select * from employees where status ='inactive';
+
+8.display employee record whose employee_id=103
+mysql> select * from employees where employee_id =103;
+
+9.show employee whose name is Priya sharma
+mysql> select * from employees where employee_name='priya sharma';
+
+10.employee with 35000 salary
+mysql> select * from employees where salary=35000;
+
+11.show employee who are not from pune
+mysql> select * from employees where city !='pune';
+
+12.display employee who is not from testing department using <> operator
+mysql> select * from employees where department <> 'testing';
+
+
+SET-C
+
+1.employee whose salary is greater than 40000
+mysql> select * from employees where salary>40000;
+
+2.employee whose salary less than 35000
+mysql> select * from employees where salary<35000;
+
+3.employee whose salary is greater than equal to 50000
+mysql> select * from employees where salary>=50000;
+
+4.employee whose salary is less than equal to 30000
+mysql> select * from employees where salary<=30000;
+
+5.employee who join after January 1 2025
+mysql> select * from employees where joining_date>'2025-01-01';
+
+6.employee who join before December 31 2024
+mysql> select * from employees where joining_date<'2024-10-31';
+
+7.employees whose employee id is greater than 110
+mysql> select * from employees where employee_id>110;
+
+8.display employee names and joining date whose joining date >=2026-01-01
+mysql> select employee_name,joining_date from employees where joining_date>='2026-01-01';
+
+
+SET-D
+
+1.display Pune employee whose status is active
+mysql> select * from employees where city='pune' and status='active';
+
+2.display it department whose salary greater than 50000
+mysql> select * from employees where department='it' and salary>50000;
+
+3.employee from Mumbai whose status in inactive
+mysql> select * from employees where city='mumbai' and status='inactive';
+
+4.display employee from sales department whose salary at least 42000
+mysql> select * from employees where department='sales' and salary>=42000;
+
+5.display hr employees who join after June 1 2025
+mysql> select * from employees where department='hr' and joining_date>'2025-06-01';
+
+6.display active employee whose salary between 40000 to 70000
+mysql> select * from employees where status='active' and (salary>=40000 and salary<=70000);
+
+7.employees from Mumbai in testing department with salary>38000
+mysql> select * from employees where city='mumbai' and department='testing' and salary>38000;
+
+8.display active employees who joined on after 2026-01-01 earning over 45000
+mysql> select * from employees where status='active' and joining_date>='2026-01-01' and salary>45000;
+
+
+SET-E
+
+1.display employee from pune or Mumbai
+mysql> select * from employees where city='pune' or city='mumbai';
+
+2.display employee from it or hr department
+mysql> select * from employees where department='hr' or department='it';
+
+3.display employees whose salary is less than 32000 OR greater than 60000.
+mysql> select * from employees where salary<32000 or salary>60000;
+
+4.employee from nashik or salary more than 55000
+mysql> select * from employees where city='nashik' or salary>55000;
+
+5.employee who not belong to hr department
+mysql> select * from employees where not department='hr';
+
+6.employee whose status is not inactive
+mysql> select * from employees where status!='inactive';
+
+7.display employee from pune or Mumbai who have active status 
+mysql> select * from employees where (city='pune' or city='mumbai') and status='active';
+
+8.employees whose city not pune and salary is greater than 40000
+mysql> select * from employees where city!='pune' and salary>40000;
+
+
+SET-F
+
+1.employees whose salary is between 35000 and 55000
+mysql> select * from employees where salary between 35000 and 55000;
+
+2.employees whose salary is not between 40000 and 65000
+mysql> select * from employees where salary not between 40000 and 65000;
+
+3.display employee whose joined between 2025-01-01 and 2025-12-31
+mysql> select * from employees where joining_date between '2025-01-01' and '2025-12-31';
+
+4.employee whose employee id between 105 and 115
+mysql> select * from employees where employee_id between 105 and 115;
+
+5.employee working in it,hr,sales using in operator
+mysql> select * from employees where department in ('it','hr','sales');
+
+6.employee from pune Mumbai or Nagpur
+mysql> select * from employees where city in ('pune','mumbai','nagpur');
+
+7.employees whose department not in testing,support
+mysql> select * from employees where department not in ('testing','support');
+
+8.display employee whose city is not in Mumbai and nashik
+mysql> select * from employees where city not in ('mumbai','nashik');
+
+9.employee with employee id in 101,105,110,115,120
+mysql> select * from employees where employee_id in (101,105,110,115,120);
+
+10.display it or sales employees whose salary is between 45000 and 75000
+mysql> select * from employees where department in ('it','sales') and salary between 45000 and 75000;
+
+
+SET-G
+
+1.employee whose name starts with a
+mysql> select * from employees where employee_name like 'a%';
+
+2.employee whose name starts with r
+mysql> select * from employees where employee_name like 'r%';
+
+3.employee whose name ends with a
+mysql> select * from employees where employee_name like '%a';
+
+4.employee whose name have sh
+mysql> select * from employees where employee_name like '%sh%';
+
+5.employee whose name starts with p and ends with a
+mysql> select * from employees where employee_name like 'p%a';
+
+6.display employees whose name has exactly 5 characters using five underscores 
+mysql> select * from employees where employee_name like '_____';
+
+7.display employees whose name has 'a' as the second character 
+mysql> select * from employees where employee_name like '_a%';
+
+8.employees whose name does NOT start with r
+mysql> select * from employees where employee_name not like 'r%';
+
+
+SET-H
+
+1.employee whose email is missing
+mysql> select * from employees where email is null;
+
+2.employee who have email
+mysql> select * from employees where email is not null;
+
+3.employee from pune whose email is not provided
+mysql> select * from employees where city='pune' and email is null;
+
+4.active employees whose email is not null and salary >40000
+mysql> select * from employees where status='active' and email is not null and salary>40000;
+
+
+SET-I
+
+1.Active employees from Pune or Mumbai who belong to the IT or Sales department, earn between 40000 and 70000,and joined after '2025-01-01'
+mysql> select * from employees where status='active' and city in ('pune','mumbai') and department in ('it','sales') and salary between 40000 and 70000 and joining_date>'2025-01-01';
+
+2.employees whose name begins with s or r, whose email is not null, whose status is Active, and whose city is
+IN ('Pune', 'Nashik').
+mysql> select * from employees where employee_name like 's%' or employee_name like 'r%' and email is not null and status='active' and city in ('pune','nashik');
+
+
+
+
+
+
+
+
+
