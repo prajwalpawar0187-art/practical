@@ -1,0 +1,179 @@
+SQL - Practical No.5 (18 sep)
+
+
+Database creation
+mysql> create database streamflix;
+
+
+Table creation
+mysql> create table movies(movie_id int primary key , title varchar(100),genre varchar(50),language varchar(30),rating double, price double ,views int ,release_year int,director varchar(100),production_company varchar(100));
+
+Data insertion
+
+mysql> insert into movies values (101,'avengers','action','english',8.4,199,950,2019,'anothony russo','marvel studios');
+
+mysql> INSERT INTO movies VALUES (102,'3 Idiots','Comedy','Hindi',8.4,149,1200000,2009,'Rajkumar Hirani','Vinod Chopra Films'),(103,'Drishyam','Thriller','Hindi',8.2,129,850000,2015,'Nishikant Kamat','Panorama Studios'),(104,'Interstellar','Sci-Fi','English',8.7,249,1100000,2014,'Christopher Nolan','Warner Bros. Pictures'),(105,'KGF: Chapter 1','Action','Kannada',8.4,179,1400000,2018,'Prashanth Neel','Hombale Films'),(106,'KGF: Chapter 2','Action','Kannada',8.4,199,1800000,2022,'Prashanth Neel','Hombale Films'),(107,'RRR','Action','Telugu',8.0,199,2100000,2022,'S. S. Rajamouli','DVV Entertainment');
+
+mysql> INSERT INTO movies VALUES (108,'Baahubali: The Beginning','Epic','Telugu',8.0,179,1900000,2015,'S. S. Rajamouli','Arka Media Works'),(109,'Baahubali 2: The Conclusion','Epic','Telugu',8.2,199,2500000,2017,'S. S. Rajamouli','Arka Media Works'),(110,'Pushpa: The Rise','Action','Telugu',7.6,179,1700000,2021,'Sukumar','Mythri Movie Makers'),(111,'Pushpa 2: The Rule','Action','Telugu',6.1,199,2300000,2024,'Sukumar','Mythri Movie Makers'),(112,'Jawan','Action','Hindi',6.9,199,2200000,2023,'Atlee','Red Chillies Entertainment'),(113,'Pathaan','Action','Hindi',5.8,179,1600000,2023,'Siddharth Anand','Yash Raj Films'),(114,'Dangal','Sports','Hindi',8.3,159,1300000,2016,'Nitesh Tiwari','Aamir Khan Productions'),(115,'PK','Comedy','Hindi',8.1,149,1250000,2014,'Rajkumar Hirani','Vinod Chopra Films');
+
+mysql> INSERT INTO movies VALUES (116,'Munna Bhai M.B.B.S.','Comedy','Hindi',8.1,99,900000,2003,'Rajkumar Hirani','Vinod Chopra Films'),(117,'Chhichhore','Comedy','Hindi',8.3,129,1050000,2019,'Nitesh Tiwari','Fox Star Studios'),(118,'Taare Zameen Par','Drama','Hindi',8.3,119,780000,2007,'Aamir Khan','Aamir Khan Productions'),(119,'Zindagi Na Milegi Dobara','Drama','Hindi',8.2,139,980000,2011,'Zoya Akhtar','Excel Entertainment'),(120,'War','Action','Hindi',6.5,189,1500000,2019,'Siddharth Anand','Yash Raj Films'),(121,'Dhoom','Action','Hindi',6.6,109,720000,2004,'Sanjay Gadhvi','Yash Raj Films'),(122,'Dhoom 2','Action','Hindi',6.5,129,860000,2006,'Sanjay Gadhvi','Yash Raj Films');
+
+mysql> INSERT INTO movies VALUES (123,'Dhoom 3','Action','Hindi',5.4,149,920000,2013,'Vijay Krishna Acharya','Yash Raj Films'),(124,'Bahubali Returns','Fantasy','Hindi',7.1,139,410000,2020,'Demo Director','StreamFlix Originals'),(125,'Robot','Sci-Fi','Tamil',7.1,129,680000,2010,'S. Shankar','Sun Pictures');
+
+mysql> INSERT INTO movies VALUES (126,'Enthiran 2.0','Sci-Fi','Tamil',6.2,169,760000,2018,'S. Shankar','Lyca Productions'),(127,'Vikram','Action','Tamil',8.3,189,1450000,2022,'Lokesh Kanagaraj','Raaj Kamal Films International'),(128,'Master','Action','Tamil',7.3,159,1120000,2021,'Lokesh Kanagaraj','XB Film Creators'),(129,'Kantara','Drama','Kannada',8.2,149,1350000,2022,'Rishab Shetty','Hombale Films'),(130,'Charlie 777','Adventure','Kannada',8.0,139,740000,2022,'Kiranraj K','Paramvah Studios');
+
+
+Level-1
+
+1.movies having rating greater than 8
+mysql> select * from movies where rating>8;
+
+2.movies whose price is less than 150
+mysql> select * from movies where price<150;
+
+3.find all hindi movies
+mysql> select * from movies where language='hindi';
+
+4.movies having views more than 1000000
+mysql> select * from movies where views>1000000;
+
+5.movies release after 2015
+mysql> select * from movies where release_year>2015;
+
+6.movies whose rating between 8 and 8.5
+mysql> select * from movies where rating>=8 and rating<=8.5;
+
+7.movies belongs to action, comedy ,or thriller using in
+mysql> select * from movies where genre in ('action','thriller','comedy');
+
+8.movies directed by s.s Rajamouli
+mysql> select * from movies where director='s. s. rajamouli';
+
+9.movies produce by hombale films
+mysql> select * from movies where production_company='hombale films';
+
+10.movies produce by arka media works
+mysql> select * from movies where production_company='arka media works';
+
+Level-2
+
+5 most viewed movies
+mysql> select * from movies order by views desc limit 5;
+
+2. 5 lowest viewed movies
+mysql> select * from movies order by views asc limit 5;
+
+3.movies from highest rating to lowest rating
+mysql> select * from movies order by rating desc;
+
+4.distinct languages of movies
+mysql> select distinct language from movies;
+
+5.display Movie and Rating using aliases Movie and IMDb_Rating
+mysql> select title as movie,rating as imdb_rating from movies;
+
+6.display movie_title, director and production company
+mysql> select title,director,production_company from movies;
+
+7.sort movies by production , and then by rating descending
+mysql> select * from movies order by production_company,rating desc;
+
+8. 5 highest-rated movies released after 2015
+mysql> select * from movies where release_year>2015 order by rating desc limit 5;
+
+9.top 3 most viewed telugu movies
+mysql> select * from movies where language='telugu' order by views desc limit 3;
+
+10.top 5 expensive movies
+mysql> select * from movies order by price desc limit 5;
+
+
+Level-3
+
+1.movies name starts with a
+mysql> select * from movies where title like 'a%';
+
+2.movies whose title ends with a
+mysql> select * from movies where title like '%a';
+
+3.movies which have Bahubali
+mysql> select * from movies where title like '%bahubali%';
+
+4.movies whose contains dhoom
+mysql> select * from movies where title like '%dhoom%';
+
+5.movies whose name has exact 5 letters
+mysql> select * from movies where length(title)=5;
+
+6.movies with director whose name contains raj
+mysql> select * from movies where director like '%raj%';
+
+7. production companies whose name contains 'Films'
+mysql> select * from movies where production_company like '%films%';
+
+8.movies whose language name starts with t
+mysql> select * from movies where language like 't%';
+
+
+Level-4
+
+1.movies with price greater than 150 and rating greater than 8
+mysql> select * from movies where price>150 and rating>8;
+
+2.movies with views greater than 1000000 or rating greater than 8.5
+mysql> select * from movies where views>1000000 or rating>8.5;
+
+3.movies that are not in genre horror
+mysql> select * from movies where genre!='horror';
+
+4.movies release between 2015 and 2020
+mysql> select * from movies where release_year between 2015 and 2020;
+
+5.movies price between 100 and 200
+mysql> select * from movies where price between 100 and 200;
+
+6.movies from hindi or telugu language
+mysql> select * from movies where language='hindi' or language='telugu';
+
+7.action movies with more than 1,000,000 views.
+mysql> select * from movies where genre='action' and views>1000000;
+
+8.movie directed by s.s Rajamouli and rating greater than 8
+mysql> select * from movies where director='s. s. rajamouli' and rating>8;
+
+9.movies produced by hombale films and released after 2019
+mysql> select * from movies where production_company='hombale films' and release_year>2019;
+
+10.movies where director is not s.s Rajamouli
+mysql> select * from movies where director!='s. s. rajamouli';
+
+
+Level-5
+
+1.hidden gem
+mysql> select * from movies where rating>8 and views<50000;
+
+2.cheap and popular
+mysql> select * from movies where price<150 and views >1000000;
+
+3.recommendation engine
+mysql> select * from movies where language='english' and release_year>2015 and rating>8.5;
+
+4.trending movies
+mysql> select * from movies where release_year>2020 order by views desc limit 3;
+
+5.premium movies
+mysql> select * from movies where price>(select avg(price) from movies);
+
+6.director spotlight
+mysql> select * from movies where director='s. s. rajamouli' order by release_year asc ;
+
+7.prduction house report 
+mysql> select title,release_year,rating,views from movies where production_company='hombale films';
+
+8.franchise search
+mysql> select * from movies where title like '%bahubali%' or title like '%kgf%';
+
+Final 
+mysql> select * from movies where rating>8 and views>5000000 and price between 100 and 250 order by views desc limit 5;
+
